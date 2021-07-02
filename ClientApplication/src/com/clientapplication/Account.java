@@ -22,7 +22,7 @@ public class Account {
     private Vector<String> orders;
 
     Account(){
-        myFrame = new JFrame("Checkout");
+        myFrame = new JFrame("Account");
         myFrame.setContentPane(MainPanel);
         myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         myFrame.pack();
