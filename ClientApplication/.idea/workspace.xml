@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-
     <list default="true" id="38c7b9c3-fa1a-4818-a870-c104ab30a026" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/id" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/index_uuid" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/index_uuid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/private_key" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/private_key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Vagrantfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../server-init.sh" afterDir="false" />
-
-    <list default="true" id="ecd9e8c8-d9d9-4476-8d31-2f06948440ff" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1uiQzeEQA7u7ftnldXSHOJlJ8Ge" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />

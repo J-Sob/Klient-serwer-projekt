@@ -1,8 +1,6 @@
 package com.clientapplication;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,42 +14,38 @@ public class Login_Register {
     private JTextField NewLogin_TextField;
     private JPasswordField NewPassword_TextField;
     private JButton RegisterButton;
+    private JFrame myFrame;
 
-    public Login_Register() throws SQLException {
-        JFrame jFrame = new JFrame("Client Application");
-        jFrame.setContentPane(MainPanel);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.pack();
-        jFrame.setLocationRelativeTo(null);
+    public static User currentUser;
 
-        ResultSet resultSet;
-        logInButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String login = Login_TextField.getText();
-                String password = String.valueOf(Password_TextField.getPassword());
-                try {
-                    LogInUser(login,password);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+    public Login_Register() {
+        myFrame = new JFrame("Client Application");
+        myFrame.setContentPane(MainPanel);
+        myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        myFrame.pack();
+        myFrame.setLocationRelativeTo(null);
 
+        logInButton.addActionListener(e -> {
+            String login = Login_TextField.getText();
+            String password = String.valueOf(Password_TextField.getPassword());
+            try {
+                LogInUser(login,password);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+
+        });
+        RegisterButton.addActionListener(e -> {
+            String login = NewLogin_TextField.getText();
+            String password = String.valueOf(NewPassword_TextField.getPassword());
+            try {
+                RegisterUser(login,password);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
-        RegisterButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                String login = NewLogin_TextField.getText();
-                String password = String.valueOf(NewPassword_TextField.getPassword());
-                try {
-                    RegisterUser(login,password);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
-            }
-        });
-        jFrame.setSize(600,400);
-        jFrame.setVisible(true);
+        myFrame.setSize(600,400);
+        myFrame.setVisible(true);
     }
     private void LogInUser(String login, String password) throws SQLException {
         Connection connection = ServerConnection.getConnection();
@@ -65,7 +59,12 @@ public class Login_Register {
             if(!resultSet.next()){
                 JOptionPane.showMessageDialog(null,"Incorrect password");
             }else{
-                JOptionPane.showMessageDialog(null,"Log in successful!");
+                resultSet = statement.executeQuery("SELECT id FROM Users WHERE login = '" + login + "'");
+                resultSet.next();
+                int id = resultSet.getInt("id");
+                currentUser = new User(id,login,password);
+                HomeScreen homeScreen = new HomeScreen();
+                myFrame.dispose();
             }
         }
     }
@@ -99,7 +98,7 @@ public class Login_Register {
 
     }
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Login_Register login_register = new Login_Register();
     }
 }
