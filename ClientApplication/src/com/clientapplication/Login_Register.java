@@ -97,8 +97,4 @@ public class Login_Register {
         }
 
     }
-
-    public static void main(String[] args) {
-        Login_Register login_register = new Login_Register();
-    }
 }

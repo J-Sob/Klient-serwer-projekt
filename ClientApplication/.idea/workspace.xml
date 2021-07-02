@@ -2,11 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38c7b9c3-fa1a-4818-a870-c104ab30a026" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Account.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Checkout.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.form" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +52,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
-  <component name="RunManager" selected="Application.Login_Register">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Login_Register" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.clientapplication.Login_Register" />
       <module name="ClientApplication" />
@@ -72,8 +75,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Login_Register" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Login_Register" />
       </list>
     </recent_temporary>
   </component>

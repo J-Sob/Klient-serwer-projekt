@@ -1,11 +1,6 @@
 package com.clientapplication;
 
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -40,7 +35,7 @@ public class HomeScreen {
         myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         myFrame.pack();
         myFrame.setLocationRelativeTo(null);
-        productList.setModel(new DefaultListModel<Product>());
+        productList.setModel(new DefaultListModel<>());
 
         try {
             products = retrieveProducts(productTypes.all);
@@ -52,75 +47,61 @@ public class HomeScreen {
 
         myFrame.setSize(650,450);
         myFrame.setVisible(true);
-        allProductsButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    products.clear();
-                    products = retrieveProducts(productTypes.all);
-                    productList.setListData(products);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        allProductsButton.addActionListener(e -> {
+            try {
+                products.clear();
+                products = retrieveProducts(productTypes.all);
+                productList.setListData(products);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
-        burgersButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    products.clear();
-                    products = retrieveProducts(productTypes.burger);
-                    productList.setListData(products);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        burgersButton.addActionListener(e -> {
+            try {
+                products.clear();
+                products = retrieveProducts(productTypes.burger);
+                productList.setListData(products);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
-        pancakesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    products.clear();
-                    products = retrieveProducts(productTypes.pancake);
-                    productList.setListData(products);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        pancakesButton.addActionListener(e -> {
+            try {
+                products.clear();
+                products = retrieveProducts(productTypes.pancake);
+                productList.setListData(products);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
-        friesButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    products.clear();
-                    products = retrieveProducts(productTypes.fries);
-                    productList.setListData(products);
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        friesButton.addActionListener(e -> {
+            try {
+                products.clear();
+                products = retrieveProducts(productTypes.fries);
+                productList.setListData(products);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
-        addToCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!productList.isSelectionEmpty()){
-                    Product product = productList.getSelectedValue();
-                    Login_Register.currentUser.addProduct(product);
-                }
+        addToCartButton.addActionListener(e -> {
+            if(!productList.isSelectionEmpty()){
+                Product product = productList.getSelectedValue();
+                Login_Register.currentUser.addProduct(product);
             }
         });
-        checkoutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
+        checkoutButton.addActionListener(e -> {
+            if(Login_Register.currentUser.getUsersProducts().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Your cart is empty. Add items first.");
+            }else {
                 Checkout checkout = new Checkout();
             }
         });
-        logOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Login_Register loginRegister = new Login_Register();
-                myFrame.dispose();
-            }
+        logOutButton.addActionListener(e -> {
+            Login_Register loginRegister = new Login_Register();
+            myFrame.dispose();
+        });
+        accountButton.addActionListener(e -> {
+            Account account = new Account();
         });
     }
 

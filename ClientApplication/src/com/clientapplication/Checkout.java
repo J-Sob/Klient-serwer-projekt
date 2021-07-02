@@ -1,10 +1,7 @@
 package com.clientapplication;
 
-import com.mysql.cj.log.Log;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,41 +22,29 @@ public class Checkout {
         myFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         myFrame.pack();
         myFrame.setLocationRelativeTo(null);
-        productList.setModel(new DefaultListModel<Product>());
+        productList.setModel(new DefaultListModel<>());
         productList.setListData(Login_Register.currentUser.getUsersProducts());
-        totalLabel.setText(String.valueOf(Login_Register.currentUser.getTotalPrice()) + " PLN");
+        totalLabel.setText(Login_Register.currentUser.getTotalPrice() + " PLN");
 
 
         myFrame.setSize(450,400);
         myFrame.setVisible(true);
 
-        removeItemButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if(!productList.isSelectionEmpty()){
-                    int index = productList.getSelectedIndex();
-                    Login_Register.currentUser.removeProduct(index);
-                    productList.setListData(Login_Register.currentUser.getUsersProducts());
-                    totalLabel.setText(String.valueOf(Login_Register.currentUser.getTotalPrice()) + " PLN");
-                }
+        removeItemButton.addActionListener(e -> {
+            if(!productList.isSelectionEmpty()){
+                int index = productList.getSelectedIndex();
+                Login_Register.currentUser.removeProduct(index);
+                productList.setListData(Login_Register.currentUser.getUsersProducts());
+                totalLabel.setText(Login_Register.currentUser.getTotalPrice() + " PLN");
             }
         });
-        orderButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                makeOrder();
-            }
-        });
+        orderButton.addActionListener(e -> makeOrder());
     }
 
     void makeOrder(){
-        if(Login_Register.currentUser.getUsersProducts().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Your cart is empty. Add items first.");
-        }
-        else if(streetNameTextField.getText() == null || houseNumberTextField.getText() == null){
+        if(streetNameTextField.getText() == null || houseNumberTextField.getText() == null){
             JOptionPane.showMessageDialog(null,"Incorrect address");
-        }
-        else{
+        } else {
             Connection connection = ServerConnection.getConnection();
             Statement statement = null;
             try {
@@ -83,7 +68,7 @@ public class Checkout {
                         "`house_number`,\n" +
                         "`total_price`)\n" +
                         "VALUES\n" +
-                        "(" + Login_Register.currentUser.getId() + ",\n" +
+                        "(" + userId + ",\n" +
                         "'" + orderContent + "',\n" +
                         "'" + streetName + "',\n" +
                         "" + houseNumber + ",\n" +
