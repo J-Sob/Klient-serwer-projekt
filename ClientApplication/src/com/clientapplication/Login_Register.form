@@ -14,7 +14,7 @@
         </constraints>
         <properties>
           <font size="24" style="1"/>
-          <text value="Welcome to our Online Store!"/>
+          <text value="Welcome to SiSi Burgers!"/>
         </properties>
       </component>
       <component id="60fc" class="javax.swing.JLabel">

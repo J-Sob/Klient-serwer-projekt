@@ -24,6 +24,7 @@ mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
 mysql -uroot -p$DBPASSWD -e "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' IDENTIFIED BY '$DBPASSWD'"
 mysql -uroot -p$DBPASSWD -e "FLUSH PRIVILEGES'"
 
+
 cd /vagrant
 
 # update mysql conf file to allow remote access to the db

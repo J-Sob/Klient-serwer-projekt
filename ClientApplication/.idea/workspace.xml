@@ -2,16 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38c7b9c3-fa1a-4818-a870-c104ab30a026" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/id" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/id" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/index_uuid" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/index_uuid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/private_key" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/private_key" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Account.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/clientapplication/Account.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Checkout.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Checkout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Checkout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/HomeScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Vagrantfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../server-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../server-init.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Main.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +25,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="ProjectId" id="1uiQzeEQA7u7ftnldXSHOJlJ8Ge" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -46,7 +52,7 @@
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.fileTypes" />
   </component>
-  <component name="RunManager" selected="Application.Login_Register">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Login_Register" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.clientapplication.Login_Register" />
       <module name="ClientApplication" />
@@ -69,8 +75,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Login_Register" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.Login_Register" />
       </list>
     </recent_temporary>
   </component>
