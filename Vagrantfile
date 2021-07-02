@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "db-server" do |vmc|
     vmc.vm.box = "ubuntu/xenial64"
     vmc.vm.hostname = "vm-server.project.com"
-    vmc.vm.network "public_network", :bridge => "eth0", ip: "192.168.56.100"
+    vmc.vm.network "public_network", ip: "192.168.56.150"
     vmc.vm.network "forwarded_port", guest: 3306, host: 3306
     vmc.vm.network "forwarded_port", guest: 80, host: 8306
   

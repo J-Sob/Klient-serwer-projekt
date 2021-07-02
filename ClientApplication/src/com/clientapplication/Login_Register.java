@@ -22,6 +22,7 @@ public class Login_Register {
         jFrame.setContentPane(MainPanel);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.pack();
+        jFrame.setLocationRelativeTo(null);
 
         ResultSet resultSet;
         logInButton.addActionListener(new ActionListener() {

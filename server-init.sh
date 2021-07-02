@@ -22,6 +22,7 @@ apt-get -y install mysql-server phpmyadmin
 
 mysql -uroot -p$DBPASSWD -e "CREATE DATABASE $DBNAME"
 mysql -uroot -p$DBPASSWD -e "GRANT ALL PRIVILEGES ON $DBNAME.* TO '$DBUSER'@'%' IDENTIFIED BY '$DBPASSWD'"
+mysql -uroot -p$DBPASSWD -e "FLUSH PRIVILEGES'"
 
 cd /vagrant
 
