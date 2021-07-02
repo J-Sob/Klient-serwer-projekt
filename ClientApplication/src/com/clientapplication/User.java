@@ -18,6 +18,11 @@ public class User {
         this.usersProducts = new Vector<>();
     }
 
+    public void clearProducts(){
+        usersProducts.clear();
+        totalPrice = 0;
+    }
+
     public void addProduct(Product product){
         this.usersProducts.add(product);
         totalPrice += product.getPrice();

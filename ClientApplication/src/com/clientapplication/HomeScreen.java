@@ -30,6 +30,7 @@ public class HomeScreen {
     private JButton checkoutButton;
     private JButton addToCartButton;
     private JButton accountButton;
+    private JButton logOutButton;
     private JFrame myFrame;
     private Vector<Product> products;
 
@@ -112,6 +113,13 @@ public class HomeScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Checkout checkout = new Checkout();
+            }
+        });
+        logOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Login_Register loginRegister = new Login_Register();
+                myFrame.dispose();
             }
         });
     }
