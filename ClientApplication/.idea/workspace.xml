@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+
     <list default="true" id="38c7b9c3-fa1a-4818-a870-c104ab30a026" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_provision" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/../.vagrant/machines/db-server/virtualbox/action_set_name" afterDir="false" />
@@ -11,6 +12,9 @@
       <change beforePath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/clientapplication/Login_Register.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Vagrantfile" beforeDir="false" afterPath="$PROJECT_DIR$/../Vagrantfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../server-init.sh" beforeDir="false" afterPath="$PROJECT_DIR$/../server-init.sh" afterDir="false" />
+
+    <list default="true" id="ecd9e8c8-d9d9-4476-8d31-2f06948440ff" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" beforeDir="false" afterPath="$PROJECT_DIR$/../ubuntu-xenial-16.04-cloudimg-console.log" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
