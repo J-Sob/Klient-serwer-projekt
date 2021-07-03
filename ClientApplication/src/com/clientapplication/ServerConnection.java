@@ -42,7 +42,6 @@ public class ServerConnection implements Runnable {
             if(this.action == Action.update){
                 statementResult = statement.executeUpdate(this.SQL);
             }
-            connection.close();
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }

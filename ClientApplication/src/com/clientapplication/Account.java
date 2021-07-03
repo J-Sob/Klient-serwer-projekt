@@ -46,6 +46,11 @@ public class Account {
                 "                                       and password = sha1('"+ currentPassword + "')", ServerConnection.Action.retrieve);
         Thread passwordVerificationThread = new Thread(passwordVerification);
         passwordVerificationThread.start();
+        try {
+            passwordVerificationThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ResultSet rs = passwordVerification.getResultSet();
         if(rs.next()){
             ServerConnection passwordUpdate = new ServerConnection("UPDATE `dbserver`.`Users`\n" +
@@ -54,6 +59,11 @@ public class Account {
                     "WHERE `id` = " + Login_Register.currentUser.getId() +"", ServerConnection.Action.update);
             Thread passwordUpdateThread = new Thread(passwordUpdate);
             passwordUpdateThread.start();
+            try {
+                passwordUpdateThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             JOptionPane.showMessageDialog(null,"Password changed.");
         }else{
             JOptionPane.showMessageDialog(null,"Incorrect password.");
@@ -65,6 +75,11 @@ public class Account {
         ServerConnection retrieveOrders = new ServerConnection("SELECT * FROM Orders WHERE id_user =" + Login_Register.currentUser.getId(), ServerConnection.Action.retrieve);
         Thread retrieveOrdersThread = new Thread(retrieveOrders);
         retrieveOrdersThread.start();
+        try {
+            retrieveOrdersThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ResultSet rs = retrieveOrders.getResultSet();
         while(rs.next()){
             String order = rs.getString("order_content") + "  -  " + rs.getString("total_price") + " PLN";

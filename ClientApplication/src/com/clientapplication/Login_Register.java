@@ -49,6 +49,11 @@ public class Login_Register {
         ServerConnection loginCheck = new ServerConnection("SELECT * FROM Users WHERE login='" + login +"'", ServerConnection.Action.retrieve);
         Thread loginCheckThread = new Thread(loginCheck);
         loginCheckThread.start();
+        try {
+            loginCheckThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ResultSet resultSet = loginCheck.getResultSet();
         if(!resultSet.next()){
             JOptionPane.showMessageDialog(null,"No such user registered");
@@ -56,6 +61,11 @@ public class Login_Register {
             ServerConnection passwordVerification = new ServerConnection("SELECT * FROM Users WHERE password=sha1('" + password +"')", ServerConnection.Action.retrieve);
             Thread passwordVerificationThread = new Thread(passwordVerification);
             passwordVerificationThread.start();
+            try {
+                passwordVerificationThread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             resultSet = passwordVerification.getResultSet();
             if(!resultSet.next()){
                 JOptionPane.showMessageDialog(null,"Incorrect password");
@@ -72,6 +82,11 @@ public class Login_Register {
         ServerConnection loginCheck = new ServerConnection("SELECT * FROM Users WHERE login='" + login +"'", ServerConnection.Action.retrieve);
         Thread loginCheckThread = new Thread(loginCheck);
         loginCheckThread.start();
+        try {
+            loginCheckThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         ResultSet resultSet = loginCheck.getResultSet();
         if(!resultSet.next()){
             ServerConnection createUser = new ServerConnection("INSERT INTO `dbserver`.`Users`\n" +
