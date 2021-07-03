@@ -1,10 +1,8 @@
 package com.clientapplication;
 
 import javax.swing.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Login_Register {
     private JButton logInButton;
@@ -48,19 +46,20 @@ public class Login_Register {
         myFrame.setVisible(true);
     }
     private void LogInUser(String login, String password) throws SQLException {
-        Connection connection = ServerConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet;
-        resultSet = statement.executeQuery("SELECT * FROM Users WHERE login='" + login +"'");
+        ServerConnection loginCheck = new ServerConnection("SELECT * FROM Users WHERE login='" + login +"'", ServerConnection.Action.retrieve);
+        Thread loginCheckThread = new Thread(loginCheck);
+        loginCheckThread.start();
+        ResultSet resultSet = loginCheck.getResultSet();
         if(!resultSet.next()){
             JOptionPane.showMessageDialog(null,"No such user registered");
         }else{
-            resultSet = statement.executeQuery("SELECT * FROM Users WHERE password=sha1('" + password +"')");
+            ServerConnection passwordVerification = new ServerConnection("SELECT * FROM Users WHERE password=sha1('" + password +"')", ServerConnection.Action.retrieve);
+            Thread passwordVerificationThread = new Thread(passwordVerification);
+            passwordVerificationThread.start();
+            resultSet = passwordVerification.getResultSet();
             if(!resultSet.next()){
                 JOptionPane.showMessageDialog(null,"Incorrect password");
             }else{
-                resultSet = statement.executeQuery("SELECT id FROM Users WHERE login = '" + login + "'");
-                resultSet.next();
                 int id = resultSet.getInt("id");
                 currentUser = new User(id,login,password);
                 HomeScreen homeScreen = new HomeScreen();
@@ -70,28 +69,23 @@ public class Login_Register {
     }
 
     private void RegisterUser(String login, String password) throws SQLException {
-        Connection connection = ServerConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet resultSet;
-        resultSet = statement.executeQuery("SELECT * FROM Users WHERE login='" + login +"'");
+        ServerConnection loginCheck = new ServerConnection("SELECT * FROM Users WHERE login='" + login +"'", ServerConnection.Action.retrieve);
+        Thread loginCheckThread = new Thread(loginCheck);
+        loginCheckThread.start();
+        ResultSet resultSet = loginCheck.getResultSet();
         if(!resultSet.next()){
-            try {
-                int inserted = statement.executeUpdate("INSERT INTO `dbserver`.`Users`\n" +
-                        "(`login`,\n" +
-                        "`password`)\n" +
-                        "VALUES\n" +
-                        "('" + login + "',\n" +
-                        "sha1('"+ password +"')\n" +
-                        ");\n");
-                if(inserted == 1){
-                    JOptionPane.showMessageDialog(null,"Account created");
-                }else{
-                    JOptionPane.showMessageDialog(null,"Something went wrong. Try again.");
-                }
+            ServerConnection createUser = new ServerConnection("INSERT INTO `dbserver`.`Users`\n" +
+                    "(`login`,\n" +
+                    "`password`)\n" +
+                    "VALUES\n" +
+                    "('" + login + "',\n" +
+                    "sha1('"+ password +"')\n" +
+                    ");", ServerConnection.Action.update);
+            Thread createUserThread = new Thread(createUser);
+            createUserThread.start();
+            int inserted = createUser.getStatementResult();
 
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            JOptionPane.showMessageDialog(null,"Account created");
         } else {
             JOptionPane.showMessageDialog(null,"This login is already in use.");
         }

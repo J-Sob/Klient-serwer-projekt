@@ -1,14 +1,8 @@
 package com.clientapplication;
 
-import com.mysql.cj.log.Log;
-
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 public class Account {
@@ -19,7 +13,6 @@ public class Account {
     private JPasswordField newPasswordField;
     private JButton changePasswordButton;
     private JFrame myFrame;
-    private Vector<String> orders;
 
     Account(){
         myFrame = new JFrame("Account");
@@ -37,14 +30,11 @@ public class Account {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
-        changePasswordButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    changePassword();
-                } catch (SQLException throwables) {
-                    throwables.printStackTrace();
-                }
+        changePasswordButton.addActionListener(e -> {
+            try {
+                changePassword();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
             }
         });
     }
@@ -52,24 +42,30 @@ public class Account {
     private void changePassword() throws SQLException {
         String currentPassword = String.valueOf(currentPasswordField.getPassword());
         String newPassword = String.valueOf(newPasswordField.getPassword());
-        Connection connection = ServerConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT * FROM Users WHERE id = "+ Login_Register.currentUser.getId() +" " +
-                "                                       and password = sha1('"+ currentPassword + "')");
+        ServerConnection passwordVerification = new ServerConnection("SELECT * FROM Users WHERE id = "+ Login_Register.currentUser.getId() +" " +
+                "                                       and password = sha1('"+ currentPassword + "')", ServerConnection.Action.retrieve);
+        Thread passwordVerificationThread = new Thread(passwordVerification);
+        passwordVerificationThread.start();
+        ResultSet rs = passwordVerification.getResultSet();
         if(rs.next()){
-            statement.executeUpdate("UPDATE `dbserver`.`Users`\n" +
+            ServerConnection passwordUpdate = new ServerConnection("UPDATE `dbserver`.`Users`\n" +
                     "SET\n" +
                     "`password` = sha1('"+ newPassword +"')\n" +
-                    "WHERE `id` = " + Login_Register.currentUser.getId() +"");
+                    "WHERE `id` = " + Login_Register.currentUser.getId() +"", ServerConnection.Action.update);
+            Thread passwordUpdateThread = new Thread(passwordUpdate);
+            passwordUpdateThread.start();
             JOptionPane.showMessageDialog(null,"Password changed.");
+        }else{
+            JOptionPane.showMessageDialog(null,"Incorrect password.");
         }
     }
 
     private Vector<String> retrieveData() throws SQLException {
         Vector<String> orders = new Vector<>();
-        Connection connection = ServerConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs = statement.executeQuery("SELECT * FROM Orders WHERE id_user =" + Login_Register.currentUser.getId());
+        ServerConnection retrieveOrders = new ServerConnection("SELECT * FROM Orders WHERE id_user =" + Login_Register.currentUser.getId(), ServerConnection.Action.retrieve);
+        Thread retrieveOrdersThread = new Thread(retrieveOrders);
+        retrieveOrdersThread.start();
+        ResultSet rs = retrieveOrders.getResultSet();
         while(rs.next()){
             String order = rs.getString("order_content") + "  -  " + rs.getString("total_price") + " PLN";
             orders.add(order);
