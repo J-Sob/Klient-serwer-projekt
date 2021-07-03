@@ -2,9 +2,6 @@ package com.clientapplication;
 
 
 import javax.swing.*;
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 public class Checkout {
     private JList<Product> productList;
@@ -45,13 +42,6 @@ public class Checkout {
         if(streetNameTextField.getText() == null || houseNumberTextField.getText() == null){
             JOptionPane.showMessageDialog(null,"Incorrect address");
         } else {
-            Connection connection = ServerConnection.getConnection();
-            Statement statement = null;
-            try {
-                statement = connection.createStatement();
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
             int userId = Login_Register.currentUser.getId();
             String orderContent = "";
             for(Product product : Login_Register.currentUser.getUsersProducts()){
@@ -60,22 +50,20 @@ public class Checkout {
             double totalPrice = Login_Register.currentUser.getTotalPrice();
             String streetName = streetNameTextField.getText();
             int houseNumber = Integer.parseInt(houseNumberTextField.getText());
-            try {
-                statement.executeUpdate("INSERT INTO `dbserver`.`Orders`\n" +
-                        "(`id_user`,\n" +
-                        "`order_content`,\n" +
-                        "`street_name`,\n" +
-                        "`house_number`,\n" +
-                        "`total_price`)\n" +
-                        "VALUES\n" +
-                        "(" + userId + ",\n" +
-                        "'" + orderContent + "',\n" +
-                        "'" + streetName + "',\n" +
-                        "" + houseNumber + ",\n" +
-                        "" + totalPrice + ");");
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
+            ServerConnection createOrder = new ServerConnection("INSERT INTO `dbserver`.`Orders`\n" +
+                    "(`id_user`,\n" +
+                    "`order_content`,\n" +
+                    "`street_name`,\n" +
+                    "`house_number`,\n" +
+                    "`total_price`)\n" +
+                    "VALUES\n" +
+                    "(" + userId + ",\n" +
+                    "'" + orderContent + "',\n" +
+                    "'" + streetName + "',\n" +
+                    "" + houseNumber + ",\n" +
+                    "" + totalPrice + ");", ServerConnection.Action.update);
+            Thread createOrderThread = new Thread(createOrder);
+            createOrderThread.start();
             Login_Register.currentUser.clearProducts();
             JOptionPane.showMessageDialog(null,"Order has been created. Hope you enjoy your meal!");
             myFrame.dispose();

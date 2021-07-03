@@ -1,10 +1,8 @@
 package com.clientapplication;
 
 import javax.swing.*;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Vector;
 
 public class HomeScreen {
@@ -107,16 +105,22 @@ public class HomeScreen {
 
     private Vector<Product> retrieveProducts(productTypes type) throws SQLException {
         Vector<Product> products = new Vector<>();
-        Connection connection = ServerConnection.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet rs;
+        String sql;
         switch (type){
-            case fries ->  rs = statement.executeQuery("SELECT * FROM Products WHERE product_type = 'fries'");
-            case burger -> rs = statement.executeQuery("SELECT * FROM Products WHERE product_type = 'burger'");
-            case pancake -> rs = statement.executeQuery("SELECT * FROM Products WHERE product_type = 'pancakes'");
-            default -> rs = statement.executeQuery("SELECT * FROM Products");
+            case fries ->  sql = "SELECT * FROM Products WHERE product_type = 'fries'";
+            case burger -> sql = "SELECT * FROM Products WHERE product_type = 'burger'";
+            case pancake -> sql = "SELECT * FROM Products WHERE product_type = 'pancakes'";
+            default -> sql = "SELECT * FROM Products";
         }
-
+        ServerConnection retrieveProducts = new ServerConnection(sql, ServerConnection.Action.retrieve);
+        Thread retrieveProductsThread = new Thread(retrieveProducts);
+        retrieveProductsThread.start();
+        try {
+            retrieveProductsThread.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        ResultSet rs = retrieveProducts.getResultSet();
         while(rs.next()){
             Product product = new Product(rs.getString("product_name"),rs.getString("product_type"),rs.getDouble("price"));
             products.add(product);
